@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Demo</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>
+    <style>
+    h1 {text-align: center;}
+    /*p {text-align: center;}*/
+    div {text-align: center;}
+    </style>
+</head>
+
+<body>
+   <!-- <div>
+        Logged in as: <span id="user"></span>
+        <p>      </p>
+        <button onClick="logout()" class="btn btn-primary">Logout</button>  
+    </div>  -->
+    <div th:fragment="logout" class="logout"
+             sec:authorize="isAuthenticated()">
+            Logged user: <span sec:authentication="name">Bob</span> |
+            Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> |
+            <!--/* When using CSRF this needs to be a POST */-->
+            <!-- <form th:action="@{/logout}" method="post" style="display:inline"><input type="submit" value="Logout"/></form> -->
+            <a href="http://localhost:8080/logout">Logout</a>
+
+        </div>
+</div>
+<iframe src="./header.html" name="TradeFrameTop" height="90" width="100%" scrolling="no" style="border:none;"></iframe>
+<iframe src="./contentHome.html" name="TradeMainContent" height="700" width="100%" scrolling="no" style="border:none;"></iframe>
+<iframe src="./footer.html" name="TradeFrameBottom" height="58" width="100%" scrolling="no" style="border:none;"></iframe>
+<script type="text/javascript">
+    // $.ajaxSetup({beforeSend : function(xhr, settings) {
+    //     if (settings.type == 'POST' || settings.type == 'PUT' || settings.type == 'DELETE') {
+    //         if (!(/^http:.*/.test(settings.url) || /^https:.*/
+    //             .test(settings.url))) {
+    //     // Only send the token to relative URLs i.e. locally.
+    //             xhr.setRequestHeader("X-XSRF-TOKEN",
+    //                 Cookies.get('XSRF-TOKEN'));
+    //             }
+    //         }
+    //     }
+    // });
+
+    // $.get("/user", function(data) {
+    //     $("#user").html(data.name);
+    //     // $(".unauthenticated").hide()
+    //     // $(".authenticated").show()
+    // });
+    // var logout = function() {
+    // $.post("/logout", function() {
+        //$("#user").html('');
+        // $(".unauthenticated").show();
+        // $(".authenticated").hide();
+    // })
+    // return true;
+    // }
+</script>
+
+</body>
+</html>    
